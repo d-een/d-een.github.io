@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/home/deen/Documents/github.io/d-een.github.io/quickstart",
+	"sourceRoot": "/home/deen/Documents/github.io/d-een.github.io/.github/quickstart",
 	"sources": [
 		"stdin"
 	],
