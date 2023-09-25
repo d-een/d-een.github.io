@@ -63,7 +63,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./public
+          path: /home/deen/Documents/github.io/d-een.github.io/hugo
 
   # Deployment job
   deploy:
