@@ -1,10 +1,10 @@
 Hello folks!
 
-Shehacksctf was wild, it was great to see hackers from all over the country compete at such a level. I played with the Seekers team and --spoiler alert-- we got first place. On day 2 of the competition the hosts added a few more challenges that made the race to first place even more intriguing. Apparently pwn challs were a no-go-zone for everyone who played, in the words of some.."John alikuwa na makasiriko when creating the challs" haha. Anyway there was one specific Forensics challenge which also had 0 solves, the snifferhound The Boss as the creator @adams_kro called it. 
+Shehacksctf was wild, it was great to see hackers from all over the country compete at such a level. I played with the Seekers team and --spoiler alert-- we got first place. On day 2 of the competition the hosts added a few more challenges that made the race to first place even more intriguing. Apparently pwn challs were a no-go-zone for everyone, all players left defeated by those challenges.There was one specific Forensics challenge which also had 0 solves, the snifferhound The Boss as the creator @adams_kro called it. 
 
 ![Alt text](/images/image-8.png)
 Let's play around with it and see if it really was a hound. It was!
-You can download the pcap file here: 
+You can download the pcap file here: https://github.com/d-een/Shehacksintervasity2023
 
 So as usual let's spin up wireshark and analyze the pcap file. 
 
@@ -51,7 +51,9 @@ We got a 200 status code from this packet that exploited the log4shell vuln howe
 
 ![Alt text](/images/image.png)
 
-Doing a quick search on the log4shell vulnerability gave us the CVE number  CVE-2021-44228. The flag format would be shctf{ CVE--- ---;FULL_OUTPUT}
+Doing a quick search on the log4shell vulnerability gave us the CVE number  CVE-2021-44228. The flag format would be shctf{ CVE--- ---;FULL COMMAND}
 
 This had been such a learning curve into using Wireshark for analysis. Quite an interesting ctf!
 Remember to keep following the packets!
+
+DISCLAIMER: The flag ie CVE provided is unvalidated and I am open to review the findings, do reach out via twitter @deanjeager.
