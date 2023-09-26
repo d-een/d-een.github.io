@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Pen and Paper</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Hello folks!
+Shehacksctf was wild, it was great to see hackers from all over the country compete at such a level. I played with the Seekers team and &ndash;spoiler alert&ndash; we got first place. On day 2 of the competition the hosts added a few more challenges that made the race to first place even more intriguing. Apparently pwn challs were a no-go-zone for everyone, all players left defeated by those challenges.">
+    <meta name="generator" content="Hugo 0.119.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="" />
+<meta property="og:description" content="Hello folks!
+Shehacksctf was wild, it was great to see hackers from all over the country compete at such a level. I played with the Seekers team and &ndash;spoiler alert&ndash; we got first place. On day 2 of the competition the hosts added a few more challenges that made the race to first place even more intriguing. Apparently pwn challs were a no-go-zone for everyone, all players left defeated by those challenges." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://d--en.github.io/post/snifferhoundwriteup/" /><meta property="article:section" content="post" />
+
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="Hello folks!
+Shehacksctf was wild, it was great to see hackers from all over the country compete at such a level. I played with the Seekers team and &ndash;spoiler alert&ndash; we got first place. On day 2 of the competition the hosts added a few more challenges that made the race to first place even more intriguing. Apparently pwn challs were a no-go-zone for everyone, all players left defeated by those challenges.">
+
+<meta itemprop="wordCount" content="771">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Hello folks!
+Shehacksctf was wild, it was great to see hackers from all over the country compete at such a level. I played with the Seekers team and &ndash;spoiler alert&ndash; we got first place. On day 2 of the competition the hosts added a few more challenges that made the race to first place even more intriguing. Apparently pwn challs were a no-go-zone for everyone, all players left defeated by those challenges."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Pen and Paper
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1"></h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Hello folks!</p>
+<p>Shehacksctf was wild, it was great to see hackers from all over the country compete at such a level. I played with the Seekers team and &ndash;spoiler alert&ndash; we got first place. On day 2 of the competition the hosts added a few more challenges that made the race to first place even more intriguing. Apparently pwn challs were a no-go-zone for everyone, all players left defeated by those challenges.There was one specific Forensics challenge which also had 0 solves, the snifferhound The Boss as the creator @adams_kro called it.</p>
+<p><img src="/images/image-8.png" alt="Alt text">
+Let&rsquo;s play around with it and see if it really was a hound. It was!
+You can download the pcap file here: <a href="https://github.com/d-een/Shehacksintervasity2023">https://github.com/d-een/Shehacksintervasity2023</a></p>
+<p>So as usual let&rsquo;s spin up wireshark and analyze the pcap file.</p>
+<p>At first glance, the pcap had a number of packets, and we can see two IP addresses from the SYN-ACK packets that may be the attacker and host IPs?
+We&rsquo;ll delve into that in a bit, let&rsquo;s understand the pcap file first.</p>
+<p><img src="/images/image-9.png" alt="Alt text">
+First order is to check the pcap file properties. Important flags here in ctf context are the link type, time elapsed, the comments but it is also important to check the HASH of the file. From our pcap the capture duration was 13 minutes meaning the attacker probably did a lot in that time period. The attacker was connected via Ethernet to the network meaning they had physical access. It&rsquo;s also good to check the comments, some creators would add important details in the comment section. In this, the comment is empty so let&rsquo;s move forward.</p>
+<p><img src="/images/image-7.png" alt="Alt text">
+The packet hierachy shows the protocols used were UDP, TCP and ARP on IPv4 with a significant number of packets sent on each. Definitely something to look into more</p>
+<p><img src="/images/image-6.png" alt="Alt text">
+From the challenge description we are told that the computer exploited had a vulnerability and we are required to find the exact cve and payload used for exploitation. There are a couple ways we could find this, one is by using strings filter in wireshark and search the packet details for a string named cve</p>
+<p><img src="/images/image-5.png" alt="Alt text">
+You got to love wireshark!, we found packets with the string cve in the details.</p>
+<p><img src="/images/image-4.png" alt="Alt text">
+The packet was sent by IP addr 192.168.56.102 to 192.168.56.104 which we confirmed to be the host. A GET request echoing &ldquo;bash_cve_2014_6278&hellip;&rdquo; with an output string. Now before we get too excited let&rsquo;s go back and check the challenge requirements. We are required to provide the CVE exploited and the first successful command the attacker executed on the victim machine.</p>
+<p>After inspecting the output a little more I discovered that there were a few other cve&rsquo;s that the attacker tried out on the host. A quick google search of the cve 2014_6278 showed that the vulnerability allows RCE on bash43-026 but based on how the attacker exploited this vulnerability, it was not used for shell!
+<em>ref</em>: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6278">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6278</a></p>
+<p>Let&rsquo;s dig more!</p>
+<p>A little recon on the host machine can help us narrow down the probable vulns that the attacker might have exploited. Had to do a quick search on this and found this nice resource.
+<em>ref:</em> <a href="https://unit42.paloaltonetworks.com/using-wireshark-identifying-hosts-and-users/">https://unit42.paloaltonetworks.com/using-wireshark-identifying-hosts-and-users/</a>
+Based on the User-Agent info the host is a windows machine so be on the look out for vulns like log4shell. Spoiler alert! - No spoilers! finish the article</p>
+<p><img src="/images/image-3.png" alt="Alt text">
+For the next bitter 10 or so minutes I went around checking packets based on different search filters and checking the host response and the packets that follow. This here is a log4shell routing packet that returned a 404 response.</p>
+<p><img src="/images/image-2.png" alt="Alt text">
+This method was not convenient so I instead used Statistics to check http requests sent and sorted by packet count. We see that /adamsapps/log4shellpoc had a significant amount of packets so let&rsquo;s use it as a filter.</p>
+<p><img src="/images/image-1.png" alt="Alt text"></p>
+<p>The attacker used nessus to scan for vulnerabilities, this explains the huge amount of payloads sent in that duration of time. Side note, would love to get a hold of the templates he/she used.
+We got a 200 status code from this packet that exploited the log4shell vuln however from the Log entry we see that the POC is not complete. Sorting the packets based on timestamps showed that the attacker gained SSH access after sending this packet.</p>
+<p><img src="/images/image.png" alt="Alt text"></p>
+<p>Doing a quick search on the log4shell vulnerability gave us the CVE number  CVE-2021-44228. The flag format would be shctf{ CVE&mdash; &mdash;;FULL COMMAND}</p>
+<p>This had been such a learning curve into using Wireshark for analysis. Quite an interesting ctf!
+Remember to keep following the packets!</p>
+<p>DISCLAIMER: The flag ie CVE provided is unvalidated and I am open to review the findings, do reach out via twitter @deanjeager.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://d--en.github.io/" >
+    &copy;  Pen and Paper 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

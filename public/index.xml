@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pen and Paper</title>
+    <link>https://d--en.github.io/</link>
+    <description>Recent content on Pen and Paper</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://d--en.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://d--en.github.io/post/snifferhoundwriteup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://d--en.github.io/post/snifferhoundwriteup/</guid>
+      <description>Hello folks!
+Shehacksctf was wild, it was great to see hackers from all over the country compete at such a level. I played with the Seekers team and &amp;ndash;spoiler alert&amp;ndash; we got first place. On day 2 of the competition the hosts added a few more challenges that made the race to first place even more intriguing. Apparently pwn challs were a no-go-zone for everyone, all players left defeated by those challenges.</description>
+    </item>
+    
+  </channel>
+</rss>
