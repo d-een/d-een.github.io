@@ -1,3 +1,7 @@
+## SheHacksctf2023
+
+#### SnifferHoundwriteup
+
 Hello folks!
 
 Shehacksctf was wild, it was great to see hackers from all over the country compete at such a level. I played with the Seekers team and --spoiler alert-- we got first place. On day 2 of the competition the hosts added a few more challenges that made the race to first place even more intriguing. Apparently pwn challs were a no-go-zone for everyone, all players left defeated by those challenges.There was one specific Forensics challenge which also had 0 solves, the snifferhound The Boss as the creator @adams_kro called it. 
