@@ -5,7 +5,9 @@ SSTi arises when the template value is directly taken in from the user. ie ${GET
 Attacker can manipulate the user input to send malicous code to the server.
 Common test for this vulnerability is when math operations are processed by the server. Eg sending a request like, {42 * 10} with on the template will give respone of 420 from the server.
 Different templates have different syntax so it is good to understand the application you are working with and know the templates being used. Check image below for an overview of different template syntaxes:
+
 ![Alt text](../images/template-decision-tree.png)
+
 To demonstrate this vulnerabality let's play a ctf!
 
 ##### THE CTF - NOTEPAD PICOCTF 
