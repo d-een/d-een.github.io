@@ -1,5 +1,5 @@
 
-This work is my perspective and thoughts about this specific topic, greatly inspired by the works of Miyamoto Musashi and Taheiko Inoue.
+This work is my perspective and thoughts about this specific topic, greatly inspired by the works of Miyamoto Musashi and Takehiko Inoue.
 
 Bruce Lee said in a certain interview, "Be like water...". This got me thinking, what does it mean to __Be like water__. For that I needed to understand not just the chemical composition of water but also it's nature. 
 
